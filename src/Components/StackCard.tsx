@@ -41,7 +41,7 @@ const StackCard = ({ stack, handleAddToStack, selectedStacks } : {stack: IStack;
                     <span className="font-[Plus Jakarta Sans] text-[11px] font-medium text-[#64748B]">{stack.difficulty}</span>
                     <span className="flex items-center gap-1 font-[Plus Jakarta Sans] text-[11px] leading-[1.5em] font-semibold text-[#334155]"><FaStar className="w-2.5 h-2.5 text-[#FBBF24]" />{stack.rating}</span>
                 </div>
-                <button className="bg-[#0A0F1D] w-full text-xs font-medium px-5 py-2.5 text-white rounded-lg cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed" disabled={selected} onClick = {() => {handleAddToStack(stack); toast.success(`${stack.name} added to Stack.`);}}> {selected === true ? "✓ Added to Stack" : "Add to Stack"}</button>
+                <button className="bg-[#0A0F1D] w-full text-xs font-medium px-5 py-2.5 text-white rounded-lg cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90" disabled={selected} onClick = {() => {handleAddToStack(stack); toast.success(`${stack.name} added to Stack.`);}}> {selected === true ? "✓ Added to Stack" : "Add to Stack"}</button>
             </div>
         </div>
     );

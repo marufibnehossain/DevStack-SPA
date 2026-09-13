@@ -3,6 +3,7 @@ import Banner from "./Components/Banner"
 import Navbar from "./Components/Navbar"
 import Stacks from "./Components/Stacks";
 import type { IStack } from "./types/stackType";
+import Footer from "./Components/Footer";
 
 const stackFetch = async (): Promise<IStack[]> => {
   const res = await fetch("/data.json");
@@ -16,9 +17,10 @@ function App() {
     <>
       <Navbar />
       <Banner />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className='text-center text-lg sm:mb-20 mb-10'>Loading...</div>}>
         <Stacks promise={stackPromise} />
       </Suspense>
+      <Footer />
     </>
   )
 }

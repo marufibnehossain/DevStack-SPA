@@ -4,3 +4,12 @@
 :root {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+.brand-gradient {
+  background-image: linear-gradient(
+    to right,
+    #FF5722 0%,
+    #D81B7E 50%,
+    #7C3AED 100%
+  );
+}

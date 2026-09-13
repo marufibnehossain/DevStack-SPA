@@ -23,7 +23,7 @@ const StackedCards = ({ selectedStacks, handleRemoveStack, handleRemoveAll }: { 
           </div>
         )))}
         {selectedStacks.length > 0 && (
-            <button onClick={handleRemoveAll}  className="bg-transparent w-full text-xs font-medium px-5 py-2 text-[#D82C20] rounded-lg cursor-pointer mt-11 border border-[#D82C20]">Remove All</button>
+            <button onClick={handleRemoveAll}  className="bg-transparent w-full text-xs font-medium px-5 py-2 text-[#D82C20] rounded-lg cursor-pointer mt-11 border border-[#D82C20] hover:bg-[#D82C20] hover:text-white">Remove All</button>
         )}
       </div>
     </div>
