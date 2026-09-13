@@ -1,6 +1,5 @@
 import { FaStar } from "react-icons/fa6";
 import type { IStack } from "../types/stackType";
-import { useState } from "react";
 import { toast } from "react-toastify";
 
 const badgeStyles: Record<string, string> = {
@@ -17,24 +16,9 @@ const badgeStyles: Record<string, string> = {
   Modern: "text-[#0891B2] bg-[#ECFEFF] border-[#CFFAFE]",
   Containers: "text-[#0284C7] bg-[#F0F9FF] border-[#E0F2FE]"
 };
-const StackCard = ({ stack } : {stack: IStack}) => {
-    const [selected, setSelected] = useState(false);
+const StackCard = ({ stack, handleAddToStack, selectedStacks } : {stack: IStack; handleAddToStack: (stack: IStack) => void; selectedStacks: IStack[]}) => {
 
-    const handleAddToStack = () => {
-        if (selected) return;
-
-        setSelected(true);
-        toast.success(`${stack.name} added to Stack.`, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
+    const selected = selectedStacks.some((selectedStack) => selectedStack.id === stack.id);
 
     return (
         <div className="p-6 rounded-2xl border border-[#F1F5F9] hover:shadow-lg transition-shadow duration-300">
@@ -57,7 +41,7 @@ const StackCard = ({ stack } : {stack: IStack}) => {
                     <span className="font-[Plus Jakarta Sans] text-[11px] font-medium text-[#64748B]">{stack.difficulty}</span>
                     <span className="flex items-center gap-1 font-[Plus Jakarta Sans] text-[11px] leading-[1.5em] font-semibold text-[#334155]"><FaStar className="w-2.5 h-2.5 text-[#FBBF24]" />{stack.rating}</span>
                 </div>
-                <button className="bg-[#0A0F1D] w-full text-xs font-medium px-5 py-2.5 text-white rounded-lg cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed" disabled={selected} onClick = {() => {handleAddToStack();}}> {selected === true ? "✓ Added to Stack" : "Add to Stack"}</button>
+                <button className="bg-[#0A0F1D] w-full text-xs font-medium px-5 py-2.5 text-white rounded-lg cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed" disabled={selected} onClick = {() => {handleAddToStack(stack); toast.success(`${stack.name} added to Stack.`);}}> {selected === true ? "✓ Added to Stack" : "Add to Stack"}</button>
             </div>
         </div>
     );

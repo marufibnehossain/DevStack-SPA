@@ -1,10 +1,28 @@
-import { use } from "react";
+import { use, useState } from "react";
 import type { IStack } from "../types/stackType";
 import StackCard from "./StackCard";
 import StackedCards from "./StackedCards";
+import { toast } from "react-toastify";
 
 const Stacks = ({ promise }: { promise: Promise<IStack[]> }) => {
   const stacks = use(promise);
+
+  const [selectedStacks, setSelectedStacks] = useState<IStack[]>([]);
+  const handleAddToStack = (stack: IStack) => {
+    setSelectedStacks([...selectedStacks, stack]);
+};
+
+    const handleRemoveStack = (stack: IStack) => {
+        const remainingStacks = selectedStacks.filter((item) => item.id !== stack.id);
+        setSelectedStacks(remainingStacks);
+        toast.success(`${stack.name} removed from Stack.`);
+    };
+
+    const handleRemoveAll = () => {
+        setSelectedStacks([]);
+        toast.success(`All technologies removed from Stack.`)
+    }
+
   return (
     <div className="w-full px-[4vw] sm:pb-25 pb-10">
       <div className="max-w-305 w-full mx-auto">
@@ -16,11 +34,11 @@ const Stacks = ({ promise }: { promise: Promise<IStack[]> }) => {
         <div className="w-full flex justify-between gap-8 sm:mb-10 mb-5">
           <div className="sm:w-3/4 w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {stacks.map((stack) => (
-              <StackCard key={stack.id} stack={stack} />
+              <StackCard key={stack.id} stack={stack} handleAddToStack={handleAddToStack} selectedStacks={selectedStacks} />
             ))}
           </div>
           <div className="w-1/4">
-            <StackedCards key={stacks[0].id} stack={stacks[0]} />
+            <StackedCards selectedStacks={selectedStacks} handleRemoveStack={handleRemoveStack} handleRemoveAll={handleRemoveAll} />
           </div>
         </div>
       </div>
