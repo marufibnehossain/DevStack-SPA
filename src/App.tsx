@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Banner from "./Components/Banner"
 import Navbar from "./Components/Navbar"
 import Stacks from "./Components/Stacks";
-import type { IStack } from "./types/StackType";
+import type { IStack } from "./types/stackType";
 
 const stackFetch = async (): Promise<IStack[]> => {
   const res = await fetch("/data.json");
