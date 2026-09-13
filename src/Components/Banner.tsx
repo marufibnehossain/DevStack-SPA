@@ -14,7 +14,7 @@ const Banner = () => {
                         <button className="bg-transparent border border-[#E5E7EB] text-sm py-3 px-11 text-[#374151] rounded-lg mt-6 cursor-pointer">Learn More</button>
                     </div>
                 </div>
-                <div className="sm:w-2/5 w-full"><img src={Image} alt="Banner" className="w-full h-full object-contain" /></div>
+                <div className="sm:w-2/5 w-full"><img src={Image} alt="Banner" className="w-full h-full sm:object-contain object-cover sm:aspect-auto aspect-4/3" /></div>
             </div>
         </div>
     );
